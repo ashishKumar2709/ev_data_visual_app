@@ -1,6 +1,7 @@
 import { GraphProps, TypeCountDataType } from "@/interfaces";
 import React, { useEffect } from "react";
 import { ResponsiveContainer, PieChart, Pie, Tooltip, Label } from "recharts";
+import GraphLoader from "./GraphLoader";
 
 const EvTypePieChart: React.FC<GraphProps> = ({ data }) => {
   const [typeCountData, setTypeCountData] = React.useState<TypeCountDataType[]>(
@@ -30,7 +31,7 @@ const EvTypePieChart: React.FC<GraphProps> = ({ data }) => {
   return (
     <>
       {loading ? (
-        <div className="flex justify-center items-center"> Loading...</div>
+        <GraphLoader/>
       ) : (
         <ResponsiveContainer
           width={600}

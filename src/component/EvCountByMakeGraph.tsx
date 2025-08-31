@@ -12,6 +12,7 @@ import {
   Bar,
   Rectangle,
 } from "recharts";
+import GraphLoader from "./GraphLoader";
 
 const EvCountByMakeGraph: React.FC<GraphProps> = ({ data }) => {
   const [makeCountData, setMakeCountData] = React.useState<MakeCountDataType[]>(
@@ -41,7 +42,7 @@ const EvCountByMakeGraph: React.FC<GraphProps> = ({ data }) => {
   return (
     <>
       {loading ? (
-        <div className="flex justify-center items-center m-4"> Loading...</div>
+        <GraphLoader/>
       ) : (
         <ResponsiveContainer
           width={600}

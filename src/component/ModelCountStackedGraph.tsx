@@ -10,6 +10,7 @@ import {
   Bar,
   Label,
 } from "recharts";
+import GraphLoader from "./GraphLoader";
 
 const ModelCountStackedGraph: React.FC<GraphProps> = ({ data }) => {
   const [makeModelCountData, setMakeModelCountData] = React.useState<
@@ -42,7 +43,7 @@ const ModelCountStackedGraph: React.FC<GraphProps> = ({ data }) => {
   return (
     <>
       {loading ? (
-        <div className="flex justify-center items-center border w-[600px] h-[300px] border-gray-600 bg-gray-500 animate-pulse"> Loading...</div>
+        <GraphLoader/>
       ) : (
         <ResponsiveContainer
           width={600}

@@ -8,6 +8,7 @@ import {
   Tooltip,
   Label,
 } from "recharts";
+import GraphLoader from "./GraphLoader";
 
 const CafvEligibilityPieChart: React.FC<GraphProps> = ({ data }) => {
   const [cafvCountData, setcafvCountData] = React.useState<CafvCountDataType[]>(
@@ -40,7 +41,7 @@ const CafvEligibilityPieChart: React.FC<GraphProps> = ({ data }) => {
   return (
     <>
       {loading ? (
-        <div className="flex justify-center"> Loading...</div>
+        <GraphLoader/>
       ) : (
         <ResponsiveContainer
           width={600}

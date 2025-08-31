@@ -11,6 +11,7 @@ import {
   Bar,
   Rectangle,
 } from "recharts";
+import GraphLoader from "./GraphLoader";
 
 const AvgElectricRangeByMakeGraph: React.FC<GraphProps> = ({ data }) => {
   const [avgRangeData, setAvgRangeData] = React.useState<AvgRangeDataType[]>(
@@ -48,7 +49,7 @@ const AvgElectricRangeByMakeGraph: React.FC<GraphProps> = ({ data }) => {
   return (
     <>
       {loading ? (
-        <div className="flex justify-center items-center m-4"> Loading...</div>
+       <GraphLoader/>
       ) : (
         <ResponsiveContainer
           width={600}

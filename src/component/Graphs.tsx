@@ -2,12 +2,28 @@
 import React from "react";
 import parser from "papaparse";
 import { EVDataType } from "@/interfaces";
-import EvYearlyCountGraph from "./EvYearlyCountGraph";
-import EvCountByMakeGraph from "./EvCountByMakeGraph";
-import EvTypePieChart from "./EvTypePieChart";
-import CafvEligibilityPieChart from "./CafvEligibilityPieChart";
-import ModelCountStackedGraph from "./ModelCountStackedGraph";
-import AvgElectricRangeByMakeGraph from "./AvgElectricRangeByMakeGraph";
+import dynamic from "next/dynamic";
+import GraphLoader from "./GraphLoader";
+import AllGraphsLoader from "./AllGraphsLoader";
+const EvYearlyCountGraph = dynamic(() => import('./EvYearlyCountGraph'), {
+  loading: () => <GraphLoader/>,
+});
+const EvCountByMakeGraph = dynamic(() => import('./EvCountByMakeGraph'), {
+  loading: () => <GraphLoader/>,
+});
+const EvTypePieChart = dynamic(() => import('./EvTypePieChart'), {
+  loading: () => <GraphLoader/>,
+});
+const CafvEligibilityPieChart = dynamic(() => import('./CafvEligibilityPieChart'), {
+  loading: () => <GraphLoader/>,
+});
+const ModelCountStackedGraph = dynamic(() => import('./ModelCountStackedGraph'), {
+  loading: () => <GraphLoader/>,
+});
+const AvgElectricRangeByMakeGraph = dynamic(() => import('./AvgElectricRangeByMakeGraph'), {
+  loading: () => <GraphLoader/>,
+});
+
 
 const Graphs = () => {
   const [data, setData] = React.useState<EVDataType[]>([]);
@@ -31,9 +47,9 @@ const Graphs = () => {
   return (
     <div className="text-black flex justify-center items-center p-4">
       {loading ? (
-        <div className="flex justify-center items-center m-4 text-white">Loading...</div>
+        <AllGraphsLoader/>
       ) : (
-        <div className="grid grid-cols-2 justify-center items-center gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-4 w-full">
           <EvYearlyCountGraph data={data} />
           <EvCountByMakeGraph data={data} />
           <EvTypePieChart data={data} />

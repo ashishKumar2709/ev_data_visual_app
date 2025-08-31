@@ -10,6 +10,7 @@ import {
   Legend,
   Tooltip,
 } from "recharts";
+import GraphLoader from "./GraphLoader";
 
 const EvYearlyCountGraph: React.FC<GraphProps> = ({ data }) => {
   const [yearlyCountData, setYearlyCountData] = React.useState<
@@ -39,7 +40,7 @@ const EvYearlyCountGraph: React.FC<GraphProps> = ({ data }) => {
   return (
     <>
       {loading ? (
-        <div className="flex justify-center items-center"> Loading...</div>
+        <GraphLoader/>
       ) : (
         <LineChart
           data={yearlyCountData}
