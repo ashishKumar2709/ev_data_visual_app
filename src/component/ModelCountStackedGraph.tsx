@@ -42,7 +42,7 @@ const ModelCountStackedGraph: React.FC<GraphProps> = ({ data }) => {
   return (
     <>
       {loading ? (
-        <div className="flex justify-center items-center border border-gray-600 w-600 h-300 animate-pulse"> Loading...</div>
+        <div className="flex justify-center items-center border w-[600px] h-[300px] border-gray-600 bg-gray-500 animate-pulse"> Loading...</div>
       ) : (
         <ResponsiveContainer
           width={600}
