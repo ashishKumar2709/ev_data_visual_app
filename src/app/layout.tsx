@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +30,7 @@ export default function RootLayout({
       >
         <div className="h-full flex flex-col justify-between">
           <header className="w-full flex flex-col items-center mt-6 mb-6">
-            <h1 className="text-3xl font-bold text-white">EV Data Dashboard</h1>
+            <Link className="cursor-pointer" href="/"><h1 className="text-3xl font-bold text-white">EV Data Dashboard</h1></Link>
             <p className="text-gray-300">
               Insights into Electric Vehicle Adoption
             </p>
