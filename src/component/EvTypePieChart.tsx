@@ -1,7 +1,7 @@
 import { GraphProps, TypeCountDataType } from "@/interfaces";
 import React, { useEffect } from "react";
 import { ResponsiveContainer, PieChart, Pie, Tooltip } from "recharts";
-import GraphLoader from "./GraphLoader";
+import GraphContainer from "./GraphContainer";
 
 const EvTypePieChart: React.FC<GraphProps> = ({ data }) => {
   const [typeCountData, setTypeCountData] = React.useState<TypeCountDataType[]>(
@@ -30,39 +30,35 @@ const EvTypePieChart: React.FC<GraphProps> = ({ data }) => {
   }, [data]);
   return (
     <>
-      {loading ? (
-        <GraphLoader />
-      ) : (
-        <div className="border border-gray-600 rounded text-indigo-900 p-4">
-          <ResponsiveContainer width={600} height={300}>
-            <PieChart width={400} height={400}>
-              <Pie
-                dataKey="count"
-                data={typeCountData}
-                cx="50%"
-                cy="50%"
-                innerRadius={40}
-                outerRadius={80}
-                fill="#82ca9d"
-                nameKey={"type"}
-                name="EV Type Piechart"
-                label
-              />
-              <Tooltip />
-              {/* <Label
+      <GraphContainer
+        loading={loading}
+        description="Distribution of Type of EVs"
+      >
+        <ResponsiveContainer>
+          <PieChart>
+            <Pie
+              dataKey="count"
+              data={typeCountData}
+              cx="50%"
+              cy="50%"
+              innerRadius={40}
+              outerRadius={80}
+              fill="#82ca9d"
+              nameKey={"type"}
+              name="EV Type Piechart"
+              label
+            />
+            <Tooltip />
+            {/* <Label
                 value="EV Type Piechart"
                 name="EV Type Piechart"
                 stroke="#160becff"
                 position="end"
                 offset={-120}
               /> */}
-            </PieChart>
-          </ResponsiveContainer>
-          <p className="text-blue-400 text-center text-sm word-wrap">
-            Distribution of Type of EVs
-          </p>
-        </div>
-      )}
+          </PieChart>
+        </ResponsiveContainer>
+      </GraphContainer>
     </>
   );
 };

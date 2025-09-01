@@ -11,7 +11,7 @@ import {
   Bar,
   Rectangle,
 } from "recharts";
-import GraphLoader from "./GraphLoader";
+import GraphContainer from "./GraphContainer";
 
 const AvgElectricRangeByMakeGraph: React.FC<GraphProps> = ({ data }) => {
   const [avgRangeData, setAvgRangeData] = React.useState<AvgRangeDataType[]>(
@@ -47,48 +47,44 @@ const AvgElectricRangeByMakeGraph: React.FC<GraphProps> = ({ data }) => {
   }, [data]);
 
   return (
-    <>
-      {loading ? (
-        <GraphLoader />
-      ) : (
-        <div className="border border-gray-600 rounded text-indigo-900 p-4">
-          <ResponsiveContainer width={600} height={300}>
-            <BarChart
-              data={avgRangeData}
-              margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5,
-              }}
-            >
-              <CartesianGrid stroke="#1808f1ff" />
-              <XAxis dataKey="make" stroke="#f0f0f5cb" />
-              <YAxis
-                stroke="#f0f0f5cb"
-                label={{
-                  value: "Avg Range of EVs--->",
-                  position: "left",
-                  offset: -10,
-                  angle: -90,
-                }}
-              />
-              <Tooltip />
-              <Legend />
-              <Bar
-                dataKey="avgRange"
-                fill="#160becff"
-                activeBar={<Rectangle fill="orange" stroke="#160becff" />}
-                name={"Avg Electric Range"}
-              />
-            </BarChart>
-          </ResponsiveContainer>
-           <p className="text-blue-400 text-center text-sm word-wrap">
-            Distribution of Average Electric Range by Each Manufacturer
-          </p>
-        </div>
-      )}
-    </>
+    <GraphContainer
+      loading={loading}
+      description={
+        "Distribution of Average Electric Range by Each Manufacturer"
+      }
+    >
+      <ResponsiveContainer>
+        <BarChart
+          data={avgRangeData}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid stroke="#1808f1ff" />
+          <XAxis dataKey="make" stroke="#f0f0f5cb" />
+          <YAxis
+            stroke="#f0f0f5cb"
+            label={{
+              value: "Avg Range of EVs--->",
+              position: "left",
+              offset: -10,
+              angle: -90,
+            }}
+          />
+          <Tooltip />
+          <Legend />
+          <Bar
+            dataKey="avgRange"
+            fill="#160becff"
+            activeBar={<Rectangle fill="orange" stroke="#160becff" />}
+            name={"Avg Electric Range"}
+          />
+        </BarChart>
+      </ResponsiveContainer>
+    </GraphContainer>
   );
 };
 

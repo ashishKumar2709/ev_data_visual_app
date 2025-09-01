@@ -9,7 +9,7 @@ import {
   Tooltip,
   Bar,
 } from "recharts";
-import GraphLoader from "./GraphLoader";
+import GraphContainer from "./GraphContainer";
 
 const ModelCountStackedGraph: React.FC<GraphProps> = ({ data }) => {
   const [makeModelCountData, setMakeModelCountData] = React.useState<
@@ -43,14 +43,11 @@ const ModelCountStackedGraph: React.FC<GraphProps> = ({ data }) => {
 
   return (
     <>
-      {loading ? (
-        <GraphLoader />
-      ) : (
-        <div className="border border-gray-600 rounded text-indigo-900 p-4">
-        <ResponsiveContainer
-          width={600}
-          height={300}
-        >
+      <GraphContainer
+        loading={loading}
+        description="Distribution of Count of Different Models by Different Manufacturers"
+      >
+        <ResponsiveContainer>
           <BarChart
             data={makeModelCountData}
             margin={{
@@ -84,11 +81,7 @@ const ModelCountStackedGraph: React.FC<GraphProps> = ({ data }) => {
             ))}
           </BarChart>
         </ResponsiveContainer>
-        <p className="text-blue-400 text-center text-sm word-wrap">
-            Distribution of Count of Different Models by Different Manufacturers
-          </p>
-        </div>
-      )}
+      </GraphContainer>
     </>
   );
 };

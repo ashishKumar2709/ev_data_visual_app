@@ -9,8 +9,9 @@ import {
   YAxis,
   Legend,
   Tooltip,
+  ResponsiveContainer,
 } from "recharts";
-import GraphLoader from "./GraphLoader";
+import GraphContainer from "./GraphContainer";
 
 const EvYearlyCountGraph: React.FC<GraphProps> = ({ data }) => {
   const [yearlyCountData, setYearlyCountData] = React.useState<
@@ -39,43 +40,41 @@ const EvYearlyCountGraph: React.FC<GraphProps> = ({ data }) => {
   }, [data]);
   return (
     <>
-      {loading ? (
-        <GraphLoader/>
-      ) : (
-        <div className="border border-gray-600 rounded text-indigo-900 p-4">
-        <LineChart
-          data={yearlyCountData}
-          margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
-          width={600}
-          height={300}
-        >
-          <CartesianGrid stroke="#1808f1ff" />
-          <Line
-            type="monotone"
-            dataKey={"count"}
-            stroke="#0c1be9ff"
-            strokeWidth={1}
-            name="EVs owned count"
-          />
-          <XAxis dataKey="year" stroke="#f0f0f5cb" />
-          <YAxis
-            width="auto"
-            stroke="#f0f0f5cb"
-            label={{
-              value: "Number of EVs-->",
-              position: "left",
-              offset: -10,
-              angle: -90,
-            }}
-          />
-          <Legend align="right" />
-          <Tooltip />
-        </LineChart>
-        <p className="text-blue-400 text-center text-sm word-wrap">
-            Distribution of Yearly EV Ownership Count
-          </p>
-        </div>
-      )}
+      <GraphContainer
+        loading={loading}
+        description="Distribution of Yearly EV Ownership Count"
+      >
+        <ResponsiveContainer>
+          <LineChart
+            data={yearlyCountData}
+            margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
+            width={600}
+            height={300}
+          >
+            <CartesianGrid stroke="#1808f1ff" />
+            <Line
+              type="monotone"
+              dataKey={"count"}
+              stroke="#0c1be9ff"
+              strokeWidth={1}
+              name="EVs owned count"
+            />
+            <XAxis dataKey="year" stroke="#f0f0f5cb" />
+            <YAxis
+              width="auto"
+              stroke="#f0f0f5cb"
+              label={{
+                value: "Number of EVs-->",
+                position: "left",
+                offset: -10,
+                angle: -90,
+              }}
+            />
+            <Legend align="right" />
+            <Tooltip />
+          </LineChart>
+        </ResponsiveContainer>
+      </GraphContainer>
     </>
   );
 };

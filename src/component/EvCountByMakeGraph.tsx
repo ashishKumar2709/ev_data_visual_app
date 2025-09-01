@@ -12,7 +12,7 @@ import {
   Bar,
   Rectangle,
 } from "recharts";
-import GraphLoader from "./GraphLoader";
+import GraphContainer from "./GraphContainer";
 
 const EvCountByMakeGraph: React.FC<GraphProps> = ({ data }) => {
   const [makeCountData, setMakeCountData] = React.useState<MakeCountDataType[]>(
@@ -41,14 +41,11 @@ const EvCountByMakeGraph: React.FC<GraphProps> = ({ data }) => {
   }, [data]);
   return (
     <>
-      {loading ? (
-        <GraphLoader/>
-      ) : (
-        <div className="border border-gray-600 rounded text-indigo-900 p-4">
-        <ResponsiveContainer
-          width={600}
-          height={300}
-        >
+      <GraphContainer
+        loading={loading}
+        description={"Distribution of total EVs count by different Manufacturer"}
+      >
+        <ResponsiveContainer>
           <BarChart
             data={makeCountData}
             margin={{
@@ -78,11 +75,7 @@ const EvCountByMakeGraph: React.FC<GraphProps> = ({ data }) => {
             />
           </BarChart>
         </ResponsiveContainer>
-        <p className="text-blue-400 text-center text-sm word-wrap">
-            Distribution of total Evs count by each Manufacturer
-          </p>
-        </div>
-      )}
+      </GraphContainer>
     </>
   );
 };

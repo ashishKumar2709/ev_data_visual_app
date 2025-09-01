@@ -1,7 +1,7 @@
 import { CafvCountDataType, GraphProps } from "@/interfaces";
 import React, { useEffect } from "react";
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from "recharts";
-import GraphLoader from "./GraphLoader";
+import GraphContainer from "./GraphContainer";
 
 const CafvEligibilityPieChart: React.FC<GraphProps> = ({ data }) => {
   const [cafvCountData, setcafvCountData] = React.useState<CafvCountDataType[]>(
@@ -33,47 +33,43 @@ const CafvEligibilityPieChart: React.FC<GraphProps> = ({ data }) => {
   const COLORS = ["#024b8bff", "#00C49F", "#FFBB28", "#FF8042"];
   return (
     <>
-      {loading ? (
-        <GraphLoader />
-      ) : (
-        <div className="border border-gray-600 rounded text-indigo-900 p-4">
-          <ResponsiveContainer width={600} height={300}>
-            <PieChart width={400} height={400}>
-              <Pie
-                data={cafvCountData}
-                cx="50%"
-                cy="50%"
-                innerRadius={40}
-                outerRadius={80}
-                fill="#8884d8"
-                paddingAngle={5}
-                dataKey="count"
-                nameKey="cafv"
-                label
-              >
-                {cafvCountData.map((entry, index) => (
-                  <Cell
-                    key={`cell-${entry.cafv}`}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                ))}
-                <Tooltip />
-              </Pie>
-              {/* <Label
+      <GraphContainer
+        loading={loading}
+        description="Distribution of Clean Alternative Fuel Vehicle (CAFV) Eligibility
+            for All EVs"
+      >
+        <ResponsiveContainer>
+          <PieChart>
+            <Pie
+              data={cafvCountData}
+              cx="50%"
+              cy="50%"
+              innerRadius={40}
+              outerRadius={80}
+              fill="#8884d8"
+              paddingAngle={5}
+              dataKey="count"
+              nameKey="cafv"
+              label
+            >
+              {cafvCountData.map((entry, index) => (
+                <Cell
+                  key={`cell-${entry.cafv}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+              <Tooltip />
+            </Pie>
+            {/* <Label
               value="CAFV eligibility Piechart"
               name="CAFV eligibility Piechart"
               stroke="#160becff"
               position={"end"}
               offset={-130}
             /> */}
-            </PieChart>
-          </ResponsiveContainer>
-          <p className="text-blue-400 text-center text-sm word-wrap">
-            Distribution of Clean Alternative Fuel Vehicle (CAFV) Eligibility
-            for All EVs
-          </p>
-        </div>
-      )}
+          </PieChart>
+        </ResponsiveContainer>
+      </GraphContainer>
     </>
   );
 };
