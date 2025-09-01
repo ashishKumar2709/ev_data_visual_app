@@ -27,7 +27,24 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} w-screen h-screen bg-gray-800 text-white`}
       >
-        {children}
+        <div className="h-full flex flex-col justify-between">
+          <header className="w-full flex flex-col items-center mt-6 mb-6">
+            <h1 className="text-3xl font-bold text-white">EV Data Dashboard</h1>
+            <p className="text-gray-300">
+              Insights into Electric Vehicle Adoption
+            </p>
+          </header>
+          <main className="w-full">{children}</main>
+          <footer className="w-full text-center text-gray-400 py-4 text-sm">
+            <p>
+              Data Source:{" "}
+              <a href="https://www.kaggle.com/" target="_blank">
+                Kaggle
+              </a>
+            </p>
+            <p>EV Data Visual &copy; 2025</p>
+          </footer>
+        </div>
       </body>
     </html>
   );
