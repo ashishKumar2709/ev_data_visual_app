@@ -8,7 +8,6 @@ import {
   YAxis,
   Tooltip,
   Bar,
-  Label,
 } from "recharts";
 import GraphLoader from "./GraphLoader";
 
@@ -83,15 +82,11 @@ const ModelCountStackedGraph: React.FC<GraphProps> = ({ data }) => {
                 name={model}
               />
             ))}
-            <Label
-              value="Popular models by manufacturers"
-              name="Popular models by manufacturers"
-              stroke="#25ec0bff"
-              position={"centerBottom"}
-              offset={40}
-            />
           </BarChart>
         </ResponsiveContainer>
+        <p className="text-blue-400 text-center text-sm word-wrap">
+            Distribution of Count of Different Models by Different Manufacturers
+          </p>
         </div>
       )}
     </>

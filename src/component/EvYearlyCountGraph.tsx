@@ -71,6 +71,9 @@ const EvYearlyCountGraph: React.FC<GraphProps> = ({ data }) => {
           <Legend align="right" />
           <Tooltip />
         </LineChart>
+        <p className="text-blue-400 text-center text-sm word-wrap">
+            Distribution of Yearly EV Ownership Count
+          </p>
         </div>
       )}
     </>

@@ -79,10 +79,13 @@ const AvgElectricRangeByMakeGraph: React.FC<GraphProps> = ({ data }) => {
                 dataKey="avgRange"
                 fill="#160becff"
                 activeBar={<Rectangle fill="orange" stroke="#160becff" />}
-                name={"Avg electric range"}
+                name={"Avg Electric Range"}
               />
             </BarChart>
           </ResponsiveContainer>
+           <p className="text-blue-400 text-center text-sm word-wrap">
+            Distribution of Average Electric Range by Each Manufacturer
+          </p>
         </div>
       )}
     </>

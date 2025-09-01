@@ -75,10 +75,12 @@ const EvCountByMakeGraph: React.FC<GraphProps> = ({ data }) => {
               dataKey="count"
               fill="#160becff"
               activeBar={<Rectangle fill="orange" stroke="blue" />}
-              name={"EVs count of Manufacturer"}
             />
           </BarChart>
         </ResponsiveContainer>
+        <p className="text-blue-400 text-center text-sm word-wrap">
+            Distribution of total Evs count by each Manufacturer
+          </p>
         </div>
       )}
     </>
