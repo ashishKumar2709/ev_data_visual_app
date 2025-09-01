@@ -3,7 +3,7 @@ import GraphLoader from "./GraphLoader";
 
 const AllGraphsLoader = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {[1, 2, 3, 4, 5, 6].map((item) => {
         return <GraphLoader key={item} />;
       })}

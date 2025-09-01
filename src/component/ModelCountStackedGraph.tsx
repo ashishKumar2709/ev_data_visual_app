@@ -19,23 +19,25 @@ const ModelCountStackedGraph: React.FC<GraphProps> = ({ data }) => {
   const [allModelNames, setAllModelNames] = React.useState<string[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
   const csvFilePath = "/Electric_Vehicle_Population_Data.csv";
-  
-  useEffect(() => {
-   if (data.length > 0 && typeof window !== 'undefined') {
-    setLoading(true);
-    const timeoutId = setTimeout(() => {
-      const worker = new Worker(new URL('../workers/makeModelWorker.ts', import.meta.url));
-      worker.postMessage(csvFilePath);
-      worker.onmessage = (e: MessageEvent) => {
-        setMakeModelCountData(e.data.makeModelCountArr);
-        setAllModelNames(e.data.allModelNames);
-        setLoading(false);
-        worker.terminate();
-      };
-    }, 0);
 
-    return () => clearTimeout(timeoutId);
-  }
+  useEffect(() => {
+    if (data.length > 0 && typeof window !== "undefined") {
+      setLoading(true);
+      const timeoutId = setTimeout(() => {
+        const worker = new Worker(
+          new URL("../workers/makeModelWorker.ts", import.meta.url)
+        );
+        worker.postMessage(csvFilePath);
+        worker.onmessage = (e: MessageEvent) => {
+          setMakeModelCountData(e.data.makeModelCountArr);
+          setAllModelNames(e.data.allModelNames);
+          setLoading(false);
+          worker.terminate();
+        };
+      }, 0);
+
+      return () => clearTimeout(timeoutId);
+    }
   }, [data]);
 
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
@@ -43,12 +45,12 @@ const ModelCountStackedGraph: React.FC<GraphProps> = ({ data }) => {
   return (
     <>
       {loading ? (
-        <GraphLoader/>
+        <GraphLoader />
       ) : (
+        <div className="border border-gray-600 rounded text-indigo-900 p-4">
         <ResponsiveContainer
           width={600}
           height={300}
-          className={"border border-gray-600 bg-gray-500"}
         >
           <BarChart
             data={makeModelCountData}
@@ -60,14 +62,13 @@ const ModelCountStackedGraph: React.FC<GraphProps> = ({ data }) => {
             }}
           >
             <CartesianGrid stroke="#1808f1ff" />
-            <XAxis dataKey="name" stroke="#00010fcb" />
+            <XAxis dataKey="name" stroke="#f0f0f5cb" />
             <YAxis
-              stroke="#00010fcb"
+              stroke="#f0f0f5cb"
               label={{
                 value: "Number of EVs--->",
                 position: "insideLeft",
                 offset: -10,
-                stroke: "#00010fcb",
                 angle: -90,
               }}
               name="Popular models by manufacturers"
@@ -82,15 +83,16 @@ const ModelCountStackedGraph: React.FC<GraphProps> = ({ data }) => {
                 name={model}
               />
             ))}
-             <Label
-                          value="Popular models by manufacturers"
-                          name="Popular models by manufacturers"
-                          stroke="#25ec0bff"
-                          position={"centerBottom"}
-                          offset={40}
-                        />
+            <Label
+              value="Popular models by manufacturers"
+              name="Popular models by manufacturers"
+              stroke="#25ec0bff"
+              position={"centerBottom"}
+              offset={40}
+            />
           </BarChart>
         </ResponsiveContainer>
+        </div>
       )}
     </>
   );

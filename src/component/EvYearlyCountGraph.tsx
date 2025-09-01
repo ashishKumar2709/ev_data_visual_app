@@ -42,12 +42,12 @@ const EvYearlyCountGraph: React.FC<GraphProps> = ({ data }) => {
       {loading ? (
         <GraphLoader/>
       ) : (
+        <div className="border border-gray-600 rounded text-indigo-900 p-4">
         <LineChart
           data={yearlyCountData}
           margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
           width={600}
           height={300}
-          className={"border border-gray-600 bg-gray-500"}
         >
           <CartesianGrid stroke="#1808f1ff" />
           <Line
@@ -57,21 +57,21 @@ const EvYearlyCountGraph: React.FC<GraphProps> = ({ data }) => {
             strokeWidth={1}
             name="EVs owned count"
           />
-          <XAxis dataKey="year" stroke="#00010fcb" />
+          <XAxis dataKey="year" stroke="#f0f0f5cb" />
           <YAxis
             width="auto"
+            stroke="#f0f0f5cb"
             label={{
               value: "Number of EVs-->",
-              position: "insideLeft",
-              offset: 10,
-              stroke: "#00010fcb",
+              position: "left",
+              offset: -10,
               angle: -90,
             }}
-            stroke="#00010fcb"
           />
           <Legend align="right" />
           <Tooltip />
         </LineChart>
+        </div>
       )}
     </>
   );

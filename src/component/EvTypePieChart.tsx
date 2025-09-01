@@ -1,6 +1,6 @@
 import { GraphProps, TypeCountDataType } from "@/interfaces";
 import React, { useEffect } from "react";
-import { ResponsiveContainer, PieChart, Pie, Tooltip, Label } from "recharts";
+import { ResponsiveContainer, PieChart, Pie, Tooltip } from "recharts";
 import GraphLoader from "./GraphLoader";
 
 const EvTypePieChart: React.FC<GraphProps> = ({ data }) => {
@@ -31,36 +31,37 @@ const EvTypePieChart: React.FC<GraphProps> = ({ data }) => {
   return (
     <>
       {loading ? (
-        <GraphLoader/>
+        <GraphLoader />
       ) : (
-        <ResponsiveContainer
-          width={600}
-          height={300}
-          className={"border border-gray-600 bg-gray-500"}
-        >
-          <PieChart width={400} height={400}>
-            <Pie
-              dataKey="count"
-              data={typeCountData}
-              cx="50%"
-              cy="50%"
-              innerRadius={40}
-              outerRadius={80}
-              fill="#82ca9d"
-              nameKey={"type"}
-              name="EV Type Piechart"
-              label
-            />
-            <Tooltip />
-            <Label
-              value="EV Type Piechart"
-              name="EV Type Piechart"
-              stroke="#160becff"
-              position="end"
-              offset={-120}
-            />
-          </PieChart>
-        </ResponsiveContainer>
+        <div className="border border-gray-600 rounded text-indigo-900 p-4">
+          <ResponsiveContainer width={600} height={300}>
+            <PieChart width={400} height={400}>
+              <Pie
+                dataKey="count"
+                data={typeCountData}
+                cx="50%"
+                cy="50%"
+                innerRadius={40}
+                outerRadius={80}
+                fill="#82ca9d"
+                nameKey={"type"}
+                name="EV Type Piechart"
+                label
+              />
+              <Tooltip />
+              {/* <Label
+                value="EV Type Piechart"
+                name="EV Type Piechart"
+                stroke="#160becff"
+                position="end"
+                offset={-120}
+              /> */}
+            </PieChart>
+          </ResponsiveContainer>
+          <p className="text-blue-400 text-center text-sm word-wrap">
+            Distribution of Type of EVs
+          </p>
+        </div>
       )}
     </>
   );

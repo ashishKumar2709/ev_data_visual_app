@@ -45,11 +45,11 @@ const Graphs = () => {
   }, []);
 
   return (
-    <div className="text-black flex justify-center items-center p-4">
+    <div className="flex justify-center items-center p-4">
       {loading ? (
         <AllGraphsLoader/>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-4 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-6">
           <EvYearlyCountGraph data={data} />
           <EvCountByMakeGraph data={data} />
           <EvTypePieChart data={data} />

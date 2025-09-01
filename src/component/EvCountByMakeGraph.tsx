@@ -44,10 +44,10 @@ const EvCountByMakeGraph: React.FC<GraphProps> = ({ data }) => {
       {loading ? (
         <GraphLoader/>
       ) : (
+        <div className="border border-gray-600 rounded text-indigo-900 p-4">
         <ResponsiveContainer
           width={600}
           height={300}
-          className={"border border-gray-600 bg-gray-500"}
         >
           <BarChart
             data={makeCountData}
@@ -59,14 +59,13 @@ const EvCountByMakeGraph: React.FC<GraphProps> = ({ data }) => {
             }}
           >
             <CartesianGrid stroke="#1808f1ff" />
-            <XAxis dataKey="make" stroke="#00010fcb" />
+            <XAxis dataKey="make" stroke="#f0f0f5cb" />
             <YAxis
-              stroke="#00010fcb"
+              stroke="#f0f0f5cb"
               label={{
                 value: "Number of EVs--->",
-                position: "insideLeft",
-                offset: -10,
-                stroke: "#00010fcb",
+                position: "left",
+                offset: 10,
                 angle: -90,
               }}
             />
@@ -80,6 +79,7 @@ const EvCountByMakeGraph: React.FC<GraphProps> = ({ data }) => {
             />
           </BarChart>
         </ResponsiveContainer>
+        </div>
       )}
     </>
   );
